@@ -1,10 +1,11 @@
-import React from 'react';
+import FloatingActionButton from "../../components/FloatingActionButton";
+import { Container } from "./styles";
 
 const LandingScreen = () => {
   return (
-    <div>
-      Landing screen
-    </div>
+    <Container>
+      <FloatingActionButton aria-label="add" id="addButton"/>
+    </Container>
   );
 }
 
