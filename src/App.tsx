@@ -1,8 +1,12 @@
-import React from 'react';
-import LandingScreen from './screens/Landing/view';
+import { ProvideCards } from "./domains/cards/context";
+import LandingScreen from "./screens/Landing";
 
 function App() {
-  return <LandingScreen />;
+  return (
+    <ProvideCards>
+      <LandingScreen />
+    </ProvideCards>
+  );
 }
 
 export default App;
