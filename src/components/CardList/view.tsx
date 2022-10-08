@@ -7,7 +7,7 @@ import { CardListProps } from "./types";
 const CardList: React.FC<CardListProps> = ({
   items,
   handleSelect,
-  handleDelete,
+  handleRemove,
 }) => {
   return (
     <Grid container spacing={{ xs: 2, md: 3, lg: 4 }}>
@@ -19,7 +19,7 @@ const CardList: React.FC<CardListProps> = ({
           md={4}
           lg={3}
           key={`list-${item.id}`}
-          onClick={() => handleSelect(item)}
+          onClick={() => handleRemove(item.id as string)}
         >
           <Card item={item} />
         </Grid>

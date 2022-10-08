@@ -10,7 +10,7 @@ interface LandingScreenProps extends IModal {
   cards: ICardList;
   handleSubmit: (values: ICard) => void;
   handleSelect: (card: ICard) => void;
-  handleDelete: (cardId: string) => void;
+  handleRemove: (cardId: string) => void;
   cardSelected: ICard | undefined;
 }
 
@@ -21,7 +21,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({
   open,
   handleSubmit,
   handleSelect,
-  handleDelete,
+  handleRemove,
   cardSelected,
 }) => {
   return (
@@ -29,7 +29,7 @@ const LandingScreen: React.FC<LandingScreenProps> = ({
       <CardList
         items={cards}
         handleSelect={handleSelect}
-        handleDelete={handleDelete}
+        handleRemove={handleRemove}
       />
       <FloatingActionButton
         aria-label="add"
