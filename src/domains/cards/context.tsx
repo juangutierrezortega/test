@@ -1,19 +1,18 @@
-import React, { createContext, useContext, useMemo, useState } from 'react';
-import { ICardList } from './types';
+import React, { createContext, useContext, useMemo, useState } from "react";
+import { ICardsContext, ICardActions, ICardList } from "./types";
+import { useActions } from "./useActions";
 
-type CardsType = {
-  cards: ICardList;
-  setCards: any;
-};
-
-const CardsContext = createContext<CardsType>({} as CardsType);
+const CardsContext = createContext<ICardsContext>({} as ICardsContext);
 
 export function ProvideCards({ children }: any) {
   const [cards, setCards] = useState<ICardList>([]);
 
-  const value: CardsType = useMemo(
-    () => ({ cards, setCards }),
-    [cards, setCards]
+  const { getCardById, addCard, updateCard, removeCard }: ICardActions =
+    useActions({ cards, setCards });
+
+  const value: ICardsContext = useMemo(
+    () => ({ cards, setCards, getCardById, addCard, updateCard, removeCard }),
+    [cards, setCards, getCardById, addCard, updateCard, removeCard]
   );
   return (
     <CardsContext.Provider value={value}>{children}</CardsContext.Provider>
