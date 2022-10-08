@@ -1,5 +1,22 @@
 import { ICard, ICardActions, ICardList } from "./types";
 import { v4 as uuidv4 } from "uuid";
+import { setMyCards } from "./storage";
+
+const addCardAction = (prevCards: ICardList, card: ICard) => [
+  ...prevCards,
+  { ...card, id: uuidv4() },
+];
+
+const updateCardAction = (prevCards: ICardList, card: ICard) =>
+  [...(prevCards || [])].map((myCard: ICard) => {
+    if (myCard.id === card.id) {
+      return card;
+    }
+    return myCard;
+  });
+
+const removeCardAction = (prevCards: ICardList, cardId: string) =>
+  [...(prevCards || [])].filter((myCard: ICard) => myCard.id !== cardId);
 
 export const useActions = ({
   cards,
@@ -15,22 +32,25 @@ export const useActions = ({
   };
 
   const addCard = (card: ICard) =>
-    setCards((prevCards) => [...prevCards, { ...card, id: uuidv4() }]);
+    setCards((prevCards: ICardList) => {
+      const newCards = addCardAction(prevCards, card);
+      setMyCards(newCards);
+      return newCards;
+    });
 
   const updateCard = (card: ICard) =>
-    setCards((prevCards) =>
-      [...prevCards || []].map((myCard: ICard) => {
-        if (myCard.id === card.id) {
-          return card;
-        }
-        return myCard;
-      })
-    );
+    setCards((prevCards: ICardList) => {
+      const newCards = updateCardAction(prevCards, card);
+      setMyCards(newCards);
+      return newCards;
+    });
 
   const removeCard = (cardId: string) =>
-    setCards((prevCards) =>
-      [...prevCards || []].filter((myCard: ICard) => myCard.id !== cardId)
-    );
+    setCards((prevCards: ICardList) => {
+      const newCards = removeCardAction(prevCards, cardId);
+      setMyCards(newCards);
+      return newCards;
+    });
 
   return {
     getCardById,

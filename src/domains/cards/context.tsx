@@ -14,6 +14,7 @@ export function ProvideCards({ children }: any) {
     () => ({ cards, setCards, getCardById, addCard, updateCard, removeCard }),
     [cards, setCards, getCardById, addCard, updateCard, removeCard]
   );
+
   return (
     <CardsContext.Provider value={value}>{children}</CardsContext.Provider>
   );
