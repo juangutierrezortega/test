@@ -3,11 +3,15 @@ import CardList from "../../components/CardList";
 import Modal from "../../components/Modal";
 import { Container } from "./styles";
 import CardForm from "../../components/CardForm";
-import { ICard, ICardActions, ICardList } from "../../domains/cards/types";
+import { ICard, ICardList } from "../../domains/cards/types";
 import { IModal } from "../../components/Modal/types";
 
-interface LandingScreenProps extends IModal, ICardActions {
+interface LandingScreenProps extends IModal {
   cards: ICardList;
+  handleSubmit: (values: ICard) => void;
+  handleSelect: (card: ICard) => void;
+  handleDelete: (cardId: string) => void;
+  cardSelected: ICard | undefined;
 }
 
 const LandingScreen: React.FC<LandingScreenProps> = ({
@@ -15,23 +19,25 @@ const LandingScreen: React.FC<LandingScreenProps> = ({
   handleOpen,
   handleClose,
   open,
-  addCard,
+  handleSubmit,
+  handleSelect,
+  handleDelete,
+  cardSelected,
 }) => {
-  const handleSubmit = (newCard: ICard) => {
-    addCard(newCard);
-    handleClose();
-  };
-
   return (
     <Container>
-      <CardList items={cards} />
+      <CardList
+        items={cards}
+        handleSelect={handleSelect}
+        handleDelete={handleDelete}
+      />
       <FloatingActionButton
         aria-label="add"
         id="addButton"
         onClick={handleOpen}
       />
       <Modal handleClose={handleClose} open={open}>
-        <CardForm handleSubmit={handleSubmit} />
+        <CardForm handleSubmit={handleSubmit} cardSelected={cardSelected} />
       </Modal>
     </Container>
   );

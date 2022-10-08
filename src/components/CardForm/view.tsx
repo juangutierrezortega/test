@@ -33,6 +33,7 @@ const CardForm = () => {
         <TextField
           error={touched.description && !!errors.description}
           label="Descripción"
+          value={values.description}
           helperText={errors.description}
           onChange={handleChangeInput('description')}
         />
@@ -41,6 +42,7 @@ const CardForm = () => {
         <TextField
           error={!!errors.imageUrl}
           label="Image (URL)"
+          value={values.imageUrl}
           helperText={errors.imageUrl}
           onChange={handleChangeInput('imageUrl')}
         />

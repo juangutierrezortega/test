@@ -5,10 +5,11 @@ import View from "./view";
 
 interface CardFormProps {
   handleSubmit: (values: ICard) => void;
+  cardSelected: ICard | undefined
 }
 
-const CardForm: React.FC<CardFormProps> = ({ handleSubmit }) => {
-  const initialValues: ICard = {
+const CardForm: React.FC<CardFormProps> = ({ handleSubmit, cardSelected }) => {
+  const initialValues: ICard = cardSelected || {
     title: "",
     description: "",
   };
