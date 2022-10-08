@@ -3,6 +3,7 @@ export interface ICard {
   title: string;
   description: string;
   imageUrl?: string;
+  createdAt?: number;
 }
 
 export type ICardList = Array<ICard>;

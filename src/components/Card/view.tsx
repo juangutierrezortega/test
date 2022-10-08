@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { CardProps } from "./types";
 
-const CardComponent: React.FC<CardProps> = ({ item }) => {
+const CardComponent: React.FC<CardProps> = ({ item, handleEdit, handleRemove }) => {
   return (
     <Card>
       <CardActionArea>
@@ -24,6 +24,10 @@ const CardComponent: React.FC<CardProps> = ({ item }) => {
           <Typography variant="body2" color="text.secondary">
             {item?.description}
           </Typography>
+
+          <span onClick={handleEdit}>Editar</span>
+          <span onClick={handleRemove}>Elminar</span>
+
         </CardContent>
       </CardActionArea>
     </Card>

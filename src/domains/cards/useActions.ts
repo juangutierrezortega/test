@@ -4,7 +4,7 @@ import { setMyCards } from "./storage";
 
 const addCardAction = (prevCards: ICardList, card: ICard) => [
   ...prevCards,
-  { ...card, id: uuidv4() },
+  { ...card, id: uuidv4(), createdAt: new Date().getTime() },
 ];
 
 const updateCardAction = (prevCards: ICardList, card: ICard) =>
