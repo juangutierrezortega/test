@@ -1,18 +1,17 @@
 import { useFormikContext, FormikContextType } from "formik";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { ICard } from "../../domains/cards/types";
 
 const CardForm = () => {
-  const {values, errors, touched, setFieldValue }: FormikContextType<ICard> = useFormikContext();
+  const { values, errors, touched, setFieldValue }: FormikContextType<ICard> =
+    useFormikContext();
 
-  console.log({values, errors, touched})
-
-  const handleChangeInput = (fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldValue(fieldName, event.target.value);
-  };
-
+  const handleChangeInput =
+    (fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
+      setFieldValue(fieldName, event.target.value);
+    };
 
   return (
     <Box
@@ -26,7 +25,7 @@ const CardForm = () => {
           label="Título"
           value={values.title}
           helperText={errors.title}
-          onChange={handleChangeInput('title')}
+          onChange={handleChangeInput("title")}
         />
       </div>
       <div>
@@ -35,7 +34,7 @@ const CardForm = () => {
           label="Descripción"
           value={values.description}
           helperText={errors.description}
-          onChange={handleChangeInput('description')}
+          onChange={handleChangeInput("description")}
         />
       </div>
       <div>
@@ -44,10 +43,12 @@ const CardForm = () => {
           label="Image (URL)"
           value={values.imageUrl}
           helperText={errors.imageUrl}
-          onChange={handleChangeInput('imageUrl')}
+          onChange={handleChangeInput("imageUrl")}
         />
       </div>
-      <Button type="submit" variant="contained">Enviar</Button>
+      <Button type="submit" variant="contained">
+        Enviar
+      </Button>
     </Box>
   );
 };

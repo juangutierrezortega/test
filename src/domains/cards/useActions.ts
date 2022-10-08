@@ -1,22 +1,6 @@
 import { ICard, ICardActions, ICardList } from "./types";
-import { v4 as uuidv4 } from "uuid";
 import { setMyCards } from "./storage";
-
-const addCardAction = (prevCards: ICardList, card: ICard) => [
-  ...prevCards,
-  { ...card, id: uuidv4(), createdAt: new Date().getTime() },
-];
-
-const updateCardAction = (prevCards: ICardList, card: ICard) =>
-  [...(prevCards || [])].map((myCard: ICard) => {
-    if (myCard.id === card.id) {
-      return card;
-    }
-    return myCard;
-  });
-
-const removeCardAction = (prevCards: ICardList, cardId: string) =>
-  [...(prevCards || [])].filter((myCard: ICard) => myCard.id !== cardId);
+import { addCardAction, removeCardAction, updateCardAction } from "./utils";
 
 export const useActions = ({
   cards,
@@ -25,8 +9,6 @@ export const useActions = ({
   cards: ICardList;
   setCards: React.Dispatch<React.SetStateAction<ICardList>>;
 }): ICardActions => {
-  console.log({ cards });
-
   const getCardById = (cardId: string): ICard | undefined => {
     return (cards || []).find((card: ICard) => card.id === cardId);
   };

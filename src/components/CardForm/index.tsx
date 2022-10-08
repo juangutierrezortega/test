@@ -12,6 +12,7 @@ const CardForm: React.FC<CardFormProps> = ({ handleSubmit, cardSelected }) => {
   const initialValues: ICard = cardSelected || {
     title: "",
     description: "",
+    createdAt: 0,
   };
 
   return (

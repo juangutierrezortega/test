@@ -1,6 +1,14 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react";
+import { OrderBy } from "../common/types";
 import { ICardsContext, ICardActions, ICardList } from "./types";
 import { useActions } from "./useActions";
+import { orderData } from "./utils";
 
 const CardsContext = createContext<ICardsContext>({} as ICardsContext);
 
@@ -10,9 +18,21 @@ export function ProvideCards({ children }: any) {
   const { getCardById, addCard, updateCard, removeCard }: ICardActions =
     useActions({ cards, setCards });
 
+  const fetchCards = useCallback(
+    (orderBy: OrderBy): ICardList => orderData(cards, orderBy),
+    [cards, orderData]
+  );
+
   const value: ICardsContext = useMemo(
-    () => ({ cards, setCards, getCardById, addCard, updateCard, removeCard }),
-    [cards, setCards, getCardById, addCard, updateCard, removeCard]
+    () => ({
+      fetchCards,
+      setCards,
+      getCardById,
+      addCard,
+      updateCard,
+      removeCard,
+    }),
+    [fetchCards, setCards, getCardById, addCard, updateCard, removeCard]
   );
 
   return (

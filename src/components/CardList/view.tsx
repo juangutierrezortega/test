@@ -11,7 +11,9 @@ const CardList: React.FC<CardListProps> = ({
   handleSelect,
   handleRemove,
 }) => {
-  const [cardSelected, setCardSelected] = React.useState<ICard | undefined>(undefined)
+  const [cardSelected, setCardSelected] = React.useState<ICard | undefined>(
+    undefined
+  );
   const { open, handleClose, handleOpen } = useModal();
 
   const handleConfirmRemove = () => {
@@ -24,7 +26,7 @@ const CardList: React.FC<CardListProps> = ({
   const handleOpenRemove = (card: ICard) => () => {
     setCardSelected(card);
     handleOpen();
-  }
+  };
 
   return (
     <Grid container spacing={{ xs: 2, md: 3, lg: 4 }}>
