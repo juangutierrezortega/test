@@ -3,11 +3,11 @@ import React from "react";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { OrderTypeEnum } from "../../domains/common/types";
-import { Container } from "./styles";
+import { Container, Label } from "./styles";
 
 interface SortByFieldProps {
-  nextOrder: any;
-  orderType: any;
+  nextOrder: () => void;
+  orderType: OrderTypeEnum;
   label: string;
 }
 
@@ -18,7 +18,7 @@ const SortByField: React.FC<SortByFieldProps> = ({
 }) => {
   return (
     <Container onClick={nextOrder}>
-      <span>{label}</span>
+      <Label>{label}</Label>
       {orderType === OrderTypeEnum.NONE && (
         <ArrowUpwardIcon color="primary" id="none" />
       )}

@@ -6,7 +6,7 @@ import { IModal } from "../Modal/types";
 interface ConfirmDialogProps extends IModal {
   title: string;
   text: string;
-  handleConfirm?: (optional?: any) => void;
+  handleConfirm?: () => void;
 }
 
 const ConfirmDialog: React.FC<ConfirmDialogProps> = (props) => {

@@ -12,7 +12,7 @@ import { orderData } from "./utils";
 
 const CardsContext = createContext<ICardsContext>({} as ICardsContext);
 
-export function ProvideCards({ children }: any) {
+export function ProvideCards({ children }: { children: React.ReactNode }) {
   const [cards, setCards] = useState<ICardList>([]);
 
   const { getCardById, addCard, updateCard, removeCard }: ICardActions =

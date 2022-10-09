@@ -22,3 +22,5 @@ export const Container = styled.div`
     }
   }
 `;
+
+export const Label = styled.span``;

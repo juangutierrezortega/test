@@ -6,8 +6,7 @@ import { ICard } from "../../domains/cards/types";
 
 import View from "./view";
 
-
-function LandingScren(props: any) {
+function LandingScren() {
   const [cardSelected, setCardSelected] = useState<ICard | undefined>();
   const { fetchCards, addCard, updateCard, removeCard } = useCards();
   const { open, handleClose, handleOpen } = useModal();
@@ -43,7 +42,6 @@ function LandingScren(props: any) {
   return (
     <>
       <View
-        {...props}
         cards={cards}
         handleSubmit={handleSubmit}
         handleClose={handleCloseAction}
