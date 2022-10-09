@@ -20,7 +20,7 @@ export function ProvideCards({ children }: any) {
 
   const fetchCards = useCallback(
     (orderBy: OrderBy): ICardList => orderData(cards, orderBy),
-    [cards, orderData]
+    [cards]
   );
 
   const value: ICardsContext = useMemo(

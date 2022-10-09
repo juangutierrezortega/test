@@ -21,6 +21,7 @@ const Screens = () => {
       }, 2000)
     };
     loadMyCards();
+    // eslint-disable-next-line
   }, []);
 
   if (isLoading) {

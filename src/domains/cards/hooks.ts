@@ -42,6 +42,7 @@ export const useOrderCards = () => {
         resetOrderTitle();
       }
     }
+    // eslint-disable-next-line
   }, [prevOrderByFieldName, orderBy.fieldName]);
 
 
