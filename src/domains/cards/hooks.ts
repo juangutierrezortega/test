@@ -31,20 +31,19 @@ export const useOrderCards = () => {
     fieldType: OrderFieldTypeEnum.NUMBER,
   });
 
-  const prevOrderTypeTitle = usePrevious(orderTypeTitle);
-  const prevOrderTypeCreatedAt = usePrevious(orderTypeCreatedAt);
+  const prevOrderByFieldName = usePrevious(orderBy.fieldName);
 
   useEffect(() => {
-    if (prevOrderTypeTitle && prevOrderTypeTitle !== orderTypeTitle) {
-      resetOrderCreatedAt();
+    if (prevOrderByFieldName && prevOrderByFieldName !== orderBy.fieldName) {
+      if (orderBy.fieldName === "title") {
+        resetOrderCreatedAt();
+      }
+      if (orderBy.fieldName === "createdAt") {
+        resetOrderTitle();
+      }
     }
-  }, [orderTypeTitle, prevOrderTypeTitle]);
+  }, [prevOrderByFieldName, orderBy.fieldName]);
 
-  useEffect(() => {
-    if (orderTypeCreatedAt && orderTypeCreatedAt !== prevOrderTypeCreatedAt) {
-      resetOrderTitle();
-    }
-  }, [orderTypeCreatedAt, prevOrderTypeCreatedAt]);
 
   return {
     orderTypeTitle,

@@ -1,3 +1,5 @@
+import AddIcon from "@mui/icons-material/Add";
+
 import FloatingActionButton from "../../components/FloatingActionButton";
 import CardList from "../../components/CardList";
 import Modal from "../../components/Modal";
@@ -35,7 +37,9 @@ const LandingScreen: React.FC<LandingScreenProps> = ({
         aria-label="add"
         id="addButton"
         onClick={handleOpen}
-      />
+      >
+        <AddIcon />
+      </FloatingActionButton>
       <Modal handleClose={handleClose} open={open}>
         <CardForm handleSubmit={handleSubmit} cardSelected={cardSelected} />
       </Modal>
