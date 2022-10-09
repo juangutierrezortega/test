@@ -7,6 +7,8 @@ import { Container } from "./styles";
 import CardForm from "../../components/CardForm";
 import { ICard, ICardList } from "../../domains/cards/types";
 import { IModal } from "../../components/Modal/types";
+import SortCardsByField from "../../components/SortCardsByField";
+import { OrderTypeEnum } from "../../domains/common/types";
 
 interface LandingScreenProps extends IModal {
   cards: ICardList;
@@ -14,6 +16,10 @@ interface LandingScreenProps extends IModal {
   handleSelect: (card: ICard) => void;
   handleRemove: (cardId: string) => void;
   cardSelected: ICard | undefined;
+  nextOrderTitle: () => void;
+  orderTypeTitle: OrderTypeEnum;
+  nextOrderCreatedAt: () => void;
+  orderTypeCreatedAt: OrderTypeEnum;
 }
 
 const LandingScreen: React.FC<LandingScreenProps> = ({
@@ -25,9 +31,20 @@ const LandingScreen: React.FC<LandingScreenProps> = ({
   handleSelect,
   handleRemove,
   cardSelected,
+  nextOrderTitle,
+  orderTypeTitle,
+  nextOrderCreatedAt,
+  orderTypeCreatedAt,
 }) => {
   return (
     <Container>
+      <SortCardsByField
+        nextOrderTitle={nextOrderTitle}
+        orderTypeTitle={orderTypeTitle}
+        nextOrderCreatedAt={nextOrderCreatedAt}
+        orderTypeCreatedAt={orderTypeCreatedAt}
+      />
+
       <CardList
         items={cards}
         handleSelect={handleSelect}

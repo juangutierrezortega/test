@@ -6,7 +6,6 @@ import { ICard } from "../../domains/cards/types";
 
 import View from "./view";
 
-import SortByField from "../../components/SortByField";
 
 function LandingScren(props: any) {
   const [cardSelected, setCardSelected] = useState<ICard | undefined>();
@@ -53,23 +52,11 @@ function LandingScren(props: any) {
         handleSelect={handleSelect}
         handleRemove={handleRemove}
         cardSelected={cardSelected}
+        nextOrderTitle={nextOrderTitle}
+        orderTypeTitle={orderTypeTitle}
+        nextOrderCreatedAt={nextOrderCreatedAt}
+        orderTypeCreatedAt={orderTypeCreatedAt}
       />
-      <span onClick={nextOrderTitle}>Next order title</span>
-      <span onClick={nextOrderCreatedAt}>Next order createdAt</span>
-
-      <div>
-        <SortByField
-          nextOrder={nextOrderTitle}
-          orderType={orderTypeTitle}
-          label="Titulo"
-        />
-
-        <SortByField
-          nextOrder={nextOrderCreatedAt}
-          orderType={orderTypeCreatedAt}
-          label="Fecha creación"
-        />
-      </div>
     </>
   );
 }
